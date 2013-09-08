@@ -1,6 +1,3 @@
-package com.coursera.week1;
-
-import stdlib.StdOut;
 
 public class UnionFindMain {
     public static void main(String[] args) {

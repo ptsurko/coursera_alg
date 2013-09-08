@@ -1,4 +1,3 @@
-package com.coursera.week1;
 
 /**
  * Created with IntelliJ IDEA.

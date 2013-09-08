@@ -1,17 +1,16 @@
-package com.coursera.week1;
 
 /**
  * Created with IntelliJ IDEA.
  * User: pasha
  * Date: 9/1/13
- * Time: 8:00 PM
+ * Time: 7:56 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CompressedWeightedQuickUnion implements IUnionFind {
+public class WeightedQuickUnion implements IUnionFind {
     private int[] id;
     private int[] weights;
     private int count;
-    public CompressedWeightedQuickUnion(int N) {
+    public WeightedQuickUnion(int N) {
         count = N;
         id = new int[N];
         weights = new int[N];
@@ -23,23 +22,15 @@ public class CompressedWeightedQuickUnion implements IUnionFind {
     }
 
     public void union(int p, int q) {
-        int pGroup = find(p), qGroup = find(q);
+        int groupToReplaceWith = find(p), groupToReplace = find(q);
 
-        if(pGroup != qGroup){
-            if(weights[pGroup] > weights[qGroup]) {
-                while(id[q] != q) {
-                    q = id[q];
-                    id[q] = pGroup;
-                }
-                id[qGroup] = pGroup;
-                weights[pGroup] += weights[qGroup];
+        if(groupToReplaceWith != groupToReplace){
+            if(weights[groupToReplaceWith] > weights[groupToReplace]) {
+                id[q] = groupToReplaceWith;
+                weights[groupToReplaceWith] += weights[groupToReplace];
             } else {
-                while(id[p] != p) {
-                    p = id[p];
-                    id[p] = qGroup;
-                }
-                id[pGroup] = qGroup;
-                weights[qGroup] += weights[pGroup];
+                id[p] = groupToReplace;
+                weights[groupToReplace] += weights[groupToReplaceWith];
             }
 
             count--;
