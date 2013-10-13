@@ -2,29 +2,27 @@
  * Created with IntelliJ IDEA.
  * User: Pavel_Tsurko
  * Date: 10/12/13
- * Time: 4:13 PM
+ * Time: 5:18 PM
  * To change this template use File | Settings | File Templates.
  */
-public class MergeSort {
+public class MergeSortBU {
     private static Comparable[] copy;
+
     public static void Sort(Comparable[] items) {
         copy = new Comparable[items.length];
-
-        SortInternal(items, 0, items.length - 1);
-
+        for(int step = 1; step < items.length; step *= 2){
+            for(int start = 0; start < items.length + step; start += step * 2) {
+                MergeInternal(items, start, start + step - 1, start + step, Math.min(start + step * 2 - 1, items.length - 1));
+            }
+        }
         copy = null;
     }
 
-    private static void SortInternal(Comparable[] items, int start, int end) {
-        if(end > start) {
-            int start1 = start, end1 = start + (end - start) / 2,
-                start2 = end1 + 1, end2 = end;
-            SortInternal(items, start1, end1);
-            SortInternal(items, start2, end2);
-
-            CopyItems(items, start, end);
-            int index = start;
-            while(index <= end) {
+    private static void MergeInternal(Comparable[] items, int start1, int end1, int start2, int end2) {
+        if(end2 > start1) {
+            CopyItems(items, start1, end2);
+            int index = start1;
+            while(index <= end2) {
                 if(start1 > end1) {
                     items[index++] = copy[start2++];
                 } else if(start2 > end2) {
