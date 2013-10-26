@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 
 //Symbol Table implemented via Unordered List
 public class STUL<Key extends Comparable<Key>, Value> {
@@ -22,7 +23,7 @@ public class STUL<Key extends Comparable<Key>, Value> {
         size++;
     }
 
-    public Value Get(Key key) throws Exception {
+    public Value Get(Key key) throws NoSuchElementException {
         Node<Key, Value> current = head;
         for(int i = 0; i < size; i++) {
             current = current.next;
@@ -30,7 +31,7 @@ public class STUL<Key extends Comparable<Key>, Value> {
                 return current.value;
             }
         }
-        throw new Exception();
+        throw new NoSuchElementException();
     }
 
     public void Delete(Key key) {

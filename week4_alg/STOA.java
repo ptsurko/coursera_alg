@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.util.NoSuchElementException;
 
 //Symbol Table implemented via Ordered Array
 public class STOA<Key extends Comparable<Key>, Value> {
@@ -35,13 +36,13 @@ public class STOA<Key extends Comparable<Key>, Value> {
         size++;
     }
 
-    public Value Get(Key key) throws Exception {
+    public Value Get(Key key) throws NoSuchElementException {
         int index = FindIndex(key, false);
         if(index != -1) {
             return pairs[index].value;
         }
 
-        throw new Exception();
+        throw new NoSuchElementException();
     }
 
     private int FindIndex(Key key, boolean returnFoundIndex) {
@@ -68,7 +69,7 @@ public class STOA<Key extends Comparable<Key>, Value> {
         return returnFoundIndex ? high : -1;
     }
 
-    public void Delete(Key key) throws Exception {
+    public void Delete(Key key) throws NoSuchElementException {
         int index = FindIndex(key, false);
         if(index != -1) {
             for(int i = index; i < size - 1; i++) {
@@ -77,7 +78,7 @@ public class STOA<Key extends Comparable<Key>, Value> {
             size--;
             return;
         }
-        throw new Exception();
+        throw new NoSuchElementException();
     }
 
     public boolean Contains(Key key) {
