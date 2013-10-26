@@ -70,4 +70,28 @@ public class BSTTest {
         assert bst.Rank("A") == 0;
     }
 
+    @Test
+    public void testDelete() {
+        BST<String, Integer> bst = new BST<String, Integer>();
+        bst.Put("S", 3);
+        bst.Put("E", 3);
+        bst.Put("A", 3);
+        bst.Put("C", 3);
+        bst.Put("R", 3);
+        bst.Put("H", 3);
+        bst.Put("M", 3);
+        bst.Put("X", 3);
+
+        assert bst.Size() == 8;
+        bst.Delete("E");
+
+        assert bst.Size() == 7;
+
+        bst.Delete("S");
+        assert bst.Size() == 6;
+
+        bst.Delete("C");
+        assert bst.Size() == 5;
+    }
+
 }

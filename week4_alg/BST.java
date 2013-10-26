@@ -129,6 +129,50 @@ public class BST<Key extends Comparable<Key>, Value> {
         return result;
     }
 
+    public void Delete(Key key) {
+        Node<Key, Value> current = root;
+
+        root = Delete(key, root);
+    }
+
+    private Node<Key, Value> Delete(Key key, Node<Key,Value> node) {
+        if(node.key.compareTo(key) == 0) {
+            if(node.left == null) {
+                return node.right;
+            } else if(node.right == null) {
+                return node.left;
+            } else {
+                Node<Key, Value> min = DeleteMin(node.right);
+                min.left = node.left;
+                if (node.right.key.compareTo(min.key) != 0) {
+                    min.right = node.right;
+                }
+                min.size = 1 + Size(min.right) + Size(min.left);
+                return min;
+            }
+        } else if (node.key.compareTo(key) < 0) {
+            node.right = Delete(key, node.right);
+        } else {
+            node.left = Delete(key, node.left);
+        }
+        node.size = 1 + Size(node.right) + Size(node.left);
+        return node;
+    }
+
+    private Node<Key, Value> DeleteMin(Node<Key, Value> node) {
+        Node<Key, Value> current = node;
+        Node<Key, Value> parent = null;
+        while(current.left != null) {
+            parent = current;
+            current = current.left;
+        }
+        if(parent != null) {
+            parent.left = current.right;
+            parent.size = 1 + Size(current.right);
+        }
+        return current;
+    }
+
     private class Node<Key, Value> {
         public Node(Key key, Value value) {
             this(key, value, null, null);
