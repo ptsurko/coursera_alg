@@ -20,6 +20,9 @@
       <sourceFolder url="file://$MODULE_DIR$/week5_alg" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/week5_hw" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/week5_int" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/week7_alg" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/week6_alg" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/work7_hw" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
