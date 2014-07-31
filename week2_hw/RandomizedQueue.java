@@ -49,8 +49,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             throw new NoSuchElementException();
         }
 
+        int indexToReturn = random.nextInt(size);
         Item itemToReturn = items[--size];
+        items[indexToReturn] = items[size];
         items[size] = null;
+        
         if(size > 0 && items.length / 4 == size) {
             resize(items.length / 2);
         }
@@ -81,7 +84,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             for (int i = 0; i < size; i++) {
                 this.items[i] = items[i];
             }
-            StdRandom.shuffle(this.items);
+            
+            //StdRandom.shuffle(this.items);
         }
         public boolean hasNext() {
             return index > 0;
